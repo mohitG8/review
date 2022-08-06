@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Baloo Bhai 2', cursive;
+        }
+        
+        .review .carousel-item {
+            min-height: 100vh;
+            background-position: center;
+            background-size: cover;
+            /* position: relative;
+            z-index: 1; */
+        }
+        
+        .review .carousel-item .container {
+            /* background: purple; */
+            border: 1px solid black;
+            border-radius: 0 10% 0 10%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            height: 50%;
+            /* width: 100wh; */
+            display: flex;
+            /* flex-direction: column; */
+            align-items: center;
+            justify-content: center;
+            padding: 2%;
+            background-image: url('bg.png.png');
+            background-position: center;
+            background-size: cover;
+            box-shadow: -8px 8px rgba(124, 118, 118, 0.3);
+        }
+        
+        .review .carousel-item .container img {
+            border: 2px solid black;
+            border-radius: 0 10% 0 10%;
+            width: 150px;
+            height: 200px;
+            margin-right: 5%;
+            /* overflow: hidden; */
+            box-shadow: -8px 0px rgba(141, 137, 137, 0.3);
+        }
+        
+        .review .carousel-item.active .container img {
+            animation: Out 0.7s ease-in backwards;
+        }
+        
+        .review .carousel-item h3 {
+            font-size: 35px;
+            font-weight: 400px;
+            line-height: 20px;
+            color: #257515;
+            margin: 0px 0px 8px;
+        }
+        
+        .review .carousel-item p {
+            font-size: 25px;
+            margin: 0;
+            color: #111010;
+        }
+        
+        .review .carousel-item.active h3 {
+            animation: fadeInLeft 0.9s ease backwards;
+        }
+        
+        .review .carousel-item.active p {
+            animation: fadeInRight 0.9s ease forwards;
+        }
+        
+        .review .carousel-item.active .container {
+            animation: In 0.2s ease backwards;
+        }
+        
+        @keyframes Out {
+            0% {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
+        
+        @keyframes In {
+            0% {
+                opacity: 0;
+                transform: translateY(80px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0px);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0px);
+            }
+        }
+        
+        .review .carousel-controls {
+            position: absolute;
+            left: 50%;
+            bottom: 40px;
+            z-index: 10;
+            transform: translateX(-50%);
+        }
+        
+        .review .carousel-indicators {
+            position: relative;
+            margin: 0;
+        }
+        
+        .review .carousel-indicators button {
+            height: 70px;
+            width: 70px;
+            margin: 0 5px;
+            border-radius: 50%;
+            background-position: center;
+            background-size: cover;
+            border: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+        
+        .review .carousel-indicators button.active {
+            border-color: #ffffff;
+            /* padding: 3px; */
+            transform: scale(1.2);
+        }
+        
+        .review .carousel-control-next,
+        .review .carousel-control-prev {
+            height: 60px;
+            width: 60px;
+            background-color: rgb(85, 231, 66);
+            opacity: 1;
+            z-index: 3;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 50%;
+        }
+        
+        .review .carousel-control-next:hover,
+        .review .carousel-control-prev:hover {
+            box-shadow: 0 0 10px #ffffff;
+            background-color: transparent;
+        }
+        
+        .review .carousel-control-next {
+            right: -90px;
+        }
+        
+        .review .carousel-control-prev {
+            left: -90px;
+        }
+        
+        .heading {
+            text-align: center;
+            font-size: 50px;
+            font-weight: 800;
+            color: green;
+        }
+        /* responsiveness */
+        
+        @media (max-width: 767px) {
+            .review .carousel-control-next,
+            .review .carousel-control-prev {
+                display: none;
+            }
+            .review .carousel-indicators button {
+                height: 50px;
+                width: 50px;
+            }
+            .review .carousel-item h3 {
+                font-size: 25px;
+            }
+            .review .carousel-item p {
+                font-size: 15px;
+                line-height: 20px;
+            }
+            .heading {
+                font-size: 40px;
+            }
+            .review .carousel-item {
+                min-height: 60vh;
+            }
+            .review .carousel-item .container img {
+                width: 75px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="review">
+        <div id="carousel" class="carousel slide" data-bs-ride="true">
+            <div class="carousel-controls">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_ayLJlvj8QXPsCB1s3nvn7SN7dHTGTbckXufKMUMS&s');"></button>
+                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2" style="background-image: url('https://media.istockphoto.com/photos/portrait-of-a-confident-mature-businessman-working-in-a-modern-office-picture-id1314997483?b=1&k=20&m=1314997483&s=170667a&w=0&h=BEv_GbGsL0A3ry-v5ouQbsn4xGokAD2DxXRWFaxpRjs=');"></button>
+                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3" style="background-image: url('https://i.pinimg.com/736x/38/93/07/389307d6af5c4be0051b7d3c4f93bf3d.jpg');"></button>
+                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="3" aria-label="Slide 4" style="background-image: url('data:image/jpeg;base64,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');"></button>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active" style="background-image: url('bg.jpg');">
+                    <h1 class="heading">Our Review</h1>
+                    <div class="container">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_ayLJlvj8QXPsCB1s3nvn7SN7dHTGTbckXufKMUMS&s" alt="">
+                        <div>
+                            <h3>James Philiph</h3>
+                            <p>Design head</p><br><br>
+                            <p>We promise to build project <br> for our client.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item" style="background-image: url('bg.jpg');">
+                    <h1 class="heading">Our Review</h1>
+                    <div class="container">
+                        <img src="https://media.istockphoto.com/photos/portrait-of-a-confident-mature-businessman-working-in-a-modern-office-picture-id1314997483?b=1&k=20&m=1314997483&s=170667a&w=0&h=BEv_GbGsL0A3ry-v5ouQbsn4xGokAD2DxXRWFaxpRjs=" alt="">
+                        <div>
+                            <h3>Jason Holder</h3>
+                            <p>UI/UX Designer</p><br> <br>
+                            <p>We promise to build project <br> for our client.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item" style="background-image: url('bg.jpg');">
+                    <h1 class="heading">Our Review</h1>
+                    <div class="container">
+                        <img src="https://i.pinimg.com/736x/38/93/07/389307d6af5c4be0051b7d3c4f93bf3d.jpg" alt="">
+                        <div>
+                            <h3>Steve Job</h3>
+                            <p>Project Manager</p> <br> <br>
+                            <p>We promise to build project <br> for our client.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item" style="background-image: url('bg.jpg');">
+                    <h1 class="heading">Our Review</h1>
+                    <div class="container">
+                        <img src="data:image/jpeg;base64,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"
+                            alt="">
+                        <div>
+                            <h3>Sai Hope</h3>
+                            <p>lead photographer</p> <br> <br>
+                            <p>We promise to build project <br> for our client.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</body>
+
+</html>
